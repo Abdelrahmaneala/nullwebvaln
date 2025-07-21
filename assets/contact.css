@@ -1,0 +1,388 @@
+/* صفحة الاتصال - NullSpecter */
+/* النجوم المتحركة في الخلفية */
+.star-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px white;
+    animation: twinkle 3s infinite ease-in-out;
+    z-index: 0;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+/* لوحة التحكم الرئيسية */
+.dashboard {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* كروت لوحة التحكم */
+.panel-card {
+    background: rgba(10, 15, 35, 0.7);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 
+        0 0 15px rgba(0, 243, 255, 0.2),
+        inset 0 0 10px rgba(0, 243, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 800px;
+    margin-top: 60px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.panel-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,243,255,0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.panel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 0 25px var(--neon-blue),
+        inset 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+/* عناوين لوحة التحكم */
+.panel-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+    padding-bottom: 0.8rem;
+}
+
+.panel-icon {
+    font-size: 1.8rem;
+    margin-left: 15px;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.panel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--neon-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* الأزرار والأدوات */
+.space-btn {
+    background: linear-gradient(145deg, #0d1b3a, #0a1430);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.space-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.space-btn:hover {
+    background: linear-gradient(145deg, #0f1f42, #0c1738);
+    box-shadow: 0 0 20px var(--neon-blue);
+    color: white;
+}
+
+.space-btn:hover::before {
+    left: 100%;
+}
+
+/* تأثيرات متحركة */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* شعار سفينة الفضاء */
+.spaceship-logo {
+    text-align: center;
+    margin: 1rem 0;
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.spaceship-logo h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+.spaceship-logo h1::after {
+    content: "🚀";
+    position: absolute;
+    right: -50px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* إشعارات الفحص */
+.scan-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 243, 255, 0.2);
+    color: #00f3ff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #00f3ff;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+}
+
+/* عناصر النموذج */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--neon-blue);
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 10, 30, 0.8);
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* صفحة الاتصال */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.contact-channel {
+    background: rgba(10, 15, 35, 0.5);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.contact-channel:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 25px rgba(189, 0, 255, 0.3);
+}
+
+.channel-icon {
+    font-size: 2.5rem;
+    color: var(--neon-blue);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--neon-blue);
+}
+
+.contact-channel h3 {
+    color: var(--neon-purple);
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.contact-channel p {
+    color: #b0b0ff;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.channel-btn {
+    display: block;
+    background: rgba(10, 20, 40, 0.7);
+    border-color: var(--neon-blue);
+    margin-top: 1rem;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.9rem;
+}
+
+.channel-btn:hover {
+    background: rgba(0, 243, 255, 0.1);
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* حقول الإدخال */
+.space-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(0, 10, 30, 0.8);
+    border: 1px solid var(--neon-blue);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.space-input:focus {
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 15px rgba(189, 0, 255, 0.5);
+}
+
+.space-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.8rem;
+    color: var(--neon-blue);
+    font-weight: bold;
+}
+
+.send-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    background: linear-gradient(145deg, #0d1b3a, #0a1430);
+    border: 1px solid var(--neon-purple);
+    color: var(--neon-purple);
+}
+
+.send-btn:hover {
+    background: linear-gradient(145deg, #1a0f42, #170c38);
+    box-shadow: 0 0 25px var(--neon-purple);
+    color: white;
+}
+
+/* التنقل */
+.nav-back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-btn {
+    background: rgba(10, 20, 40, 0.7);
+    border: 1px solid var(--neon-purple);
+    color: var(--neon-purple);
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.back-btn:hover {
+    background: rgba(189, 0, 255, 0.1);
+    box-shadow: 0 0 20px var(--neon-purple);
+    color: white;
+}
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .panel-card {
+        padding: 1.5rem;
+        margin-top: 80px;
+    }
+    
+    .spaceship-logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .spaceship-logo h1::after {
+        font-size: 1.5rem;
+        right: -40px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}

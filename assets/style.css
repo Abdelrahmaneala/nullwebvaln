@@ -1,0 +1,328 @@
+/* ألوان فضاءية وتأثيرات سفينة الفضاء */
+:root {
+  --space-dark: #0a0e1a;
+  --space-darker: #050916;
+  --neon-blue: #00f3ff;
+  --neon-purple: #bd00ff;
+  --neon-pink: #ff2a6d;
+  --stars: #ffffff;
+}
+
+body {
+  background: 
+    radial-gradient(ellipse at center, #1a1f3d 0%, var(--space-darker) 70%),
+    linear-gradient(to bottom, #050916, #1a1f3d);
+  background-size: 100% 100%;
+  color: #e0e0ff;
+  font-family: 'Orbitron', 'Tajawal', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  direction: rtl;
+}
+
+/* النجوم المتحركة في الخلفية */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, transparent 40%, rgba(255,255,255,0.1) 100%),
+    radial-gradient(circle at 80% 70%, transparent 40%, rgba(255,255,255,0.1) 100%);
+  z-index: -1;
+  animation: stars 20s infinite linear;
+}
+
+.star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes stars {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* لوحة التحكم الرئيسية */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+/* كروت لوحة التحكم */
+.panel-card {
+  background: rgba(10, 15, 35, 0.7);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 
+    0 0 15px rgba(0, 243, 255, 0.2),
+    inset 0 0 10px rgba(0, 243, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.panel-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,243,255,0.1) 0%, transparent 70%);
+  z-index: -1;
+}
+
+.panel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 0 25px var(--neon-blue),
+    inset 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+/* عناوين لوحة التحكم */
+.panel-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+  padding-bottom: 0.8rem;
+}
+
+.panel-icon {
+  font-size: 1.8rem;
+  margin-left: 15px;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.panel-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* شاشات العرض الرقمية */
+.display-screen {
+  background: rgba(0, 10, 30, 0.8);
+  border: 1px solid var(--neon-blue);
+  border-radius: 8px;
+  padding: 1.2rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue);
+  box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.3);
+  overflow-x: auto;
+  min-height: 150px;
+  margin: 1.5rem 0;
+}
+
+/* الأزرار والأدوات */
+.control-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.space-btn {
+  background: linear-gradient(145deg, #0d1b3a, #0a1430);
+  border: 1px solid var(--neon-blue);
+  color: var(--neon-blue);
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+.space-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.4), transparent);
+  transition: 0.5s;
+}
+
+.space-btn:hover {
+  background: linear-gradient(145deg, #0f1f42, #0c1738);
+  box-shadow: 0 0 20px var(--neon-blue);
+  color: white;
+}
+
+.space-btn:hover::before {
+  left: 100%;
+}
+
+/* مؤشرات التحكم */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.indicator-light {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-left: 10px;
+  background: var(--neon-pink);
+  box-shadow: 0 0 10px var(--neon-pink);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* تأثيرات متحركة */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* التنقل في سفينة الفضاء */
+.nav-panel {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.nav-btn {
+  background: rgba(10, 20, 40, 0.7);
+  border: 1px solid var(--neon-purple);
+  color: var(--neon-purple);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(189, 0, 255, 0.1);
+  box-shadow: 0 0 20px var(--neon-purple);
+  color: white;
+}
+
+/* شعار سفينة الفضاء */
+.spaceship-logo {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.spaceship-logo h1 {
+  font-size: 3.5rem;
+  background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+  position: relative;
+  display: inline-block;
+}
+
+.spaceship-logo h1::after {
+  content: "🚀";
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  animation: float 4s ease-in-out infinite;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px white;
+  animation: twinkle 3s infinite ease-in-out;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+/* إشعارات الفحص */
+.scan-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 243, 255, 0.2);
+  color: #00f3ff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #00f3ff;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(20px); }
+}
+
+/* عناصر النموذج */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--neon-blue);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  background: rgba(0, 10, 30, 0.8);
+  border: 1px solid var(--neon-blue);
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+}
